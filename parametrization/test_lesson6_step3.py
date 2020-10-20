@@ -4,17 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 import pytest
-from selenium import webdriver
 from selenium.webdriver.common.by import By
-
-
-@pytest.fixture(scope="function")
-def browser():
-    print("\nstart browser for test..")
-    browser = webdriver.Chrome()
-    yield browser
-    print("\nquit browser..")
-    browser.quit()
 
 
 @pytest.mark.parametrize('number', ["236895", "236896", "236897", "236898", "236899", "236903", "236904", "236905"])
@@ -36,4 +26,3 @@ def test_guest_should_see_login_link(browser, number):
         assert ans.text == 'Correct!', 'Not correct'
     except AssertionError:
         print(ans.text)
-
